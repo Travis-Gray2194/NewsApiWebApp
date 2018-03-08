@@ -13,6 +13,11 @@
     This content is only show to Admin authenticated users. <br />
 </div>
 
+<h2>Article:<span th:inline="text"> [[${rootobjectart}]]</span>
+</h2>
+
+<h2>Article:<span th:text ="${rootobjectart}"></span>
+</h2>
 
 <div sec:authorize="hasAuthority('USER')">
     This content is only show to authenticated users.
