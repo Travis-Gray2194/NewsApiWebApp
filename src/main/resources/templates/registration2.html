@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-sringsecurity">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/indexstyle.css">
+    <link rel="stylesheet" href="css/signupstyle.css">
+    <link rel="stylesheet" href="/../static/css/indexstyle.css">
+    <link rel="stylesheet" href="/../static/css/signupstyle.css">
+</head>
+<body>
+<!-- TOP Bar -->
+<div id="topbar">
+    <div id="signin-div" class="topbar-section">
+
+        <img id="signin-img" src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
+
+        <span id="signin-text">Sign in</span>
+        <span id="signin-text">Login in</span>
+        <span id="signin-text">View Favorites</span>
+    </div>
+
+    <div class="topbar-section topbar-menu">
+        News
+    </div>
+    <div class="topbar-section topbar-menu">
+        Sport
+    </div>
+    <div class="topbar-section topbar-menu">
+        Weather
+    </div>
+    <div class="topbar-section topbar-menu">
+        Shop
+    </div>
+    <div class="topbar-section topbar-menu">
+        Earth
+    </div>
+    <div class="topbar-section topbar-menu">
+        Travel
+    </div>
+    <div class="topbar-section topbar-menu">
+        More
+
+        <img id="more-arrow" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png">
+    </div>
+</div>
+<!-- Clear the right and left float so then they not intrapt in next divesion -->
+<div class="clear"></div>
+<!-- Menu Bar -->
+<div id="menu-bar-container">
+    <div id="menu-bar">
+        <h1>New User Registration</h1>
+        <div id="local-news">
+            <a href="#">find local news</a>
+            <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">
+        </div>
+    </div>
+</div>
+<!-- Manu Bar 2 -->
+<div id="menu-bar-2">
+    <div id="menubar-text">
+        <a href="#">Home</a>
+        <a href="#">Video</a>
+        <a href="#">World</a>
+        <a href="#">Asia</a>
+        <a href="#">UK</a>
+        <a href="#">Business</a>
+        <a href="#">Tech</a>
+        <a href="#">Science</a>
+        <a href="#">Magazine</a>
+        <a href="#">Entertainment & Arts</a>
+        <a href="#">Health</a>
+        <a id="no-border" href="#">More
+            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
+        </a>
+    </div>
+</div>
+
+<div class="form">
+
+    <ul class="tab-group">
+        <li class="tab active" ><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+    </ul>
+
+
+
+    <div class="tab-content">
+        <div id="signup" >
+            <h1>Sign Up </h1>
+<br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <form action="#" th:action="@{/register}" th:object="${users}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <label>
+                            First Name<span class="req">*</span>
+                        </label>
+                        <input type="text" th:field="*{firstName}" required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Last Name<span class="req">*</span>
+                        </label>
+                        <input type="text" th:field="*{lastName}"required autocomplete="off"/>
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            Username<span class="req">*</span>
+                        </label>
+                        <input type="text" th:field="*{username}"required autocomplete="off"/>
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            Password<span class="req">*</span>
+                        </label>
+                        <input type="password" th:field="*{password}"required autocomplete="off"/>
+                    </div>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Email Address<span class="req">*</span>
+                    </label>
+                    <input type="email" th:field="*{email}"required autocomplete="off"/>
+                </div>
+
+                <button type="submit" class="button button-block"/>Sign up</button>
+
+            </form>
+
+        </div>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <div>
+            <p th:if="${errormessage!=null}" th:text="${errormessage}"></p>
+        </div>
+
+        <div id="login" >
+            <h1>Welcome Back!</h1>
+
+            <form th:action="@{/login}" method="post">
+
+                <div class="field-wrap">
+                    <label>
+                        username<span class="req">*</span>
+                    </label>
+                    <input type="text"required autocomplete="off" name="username"/>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Password<span class="req">*</span>
+                    </label>
+                    <input type="password" name="password"required autocomplete="off"/>
+                </div>
+
+                <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+                <button type="submit" class="button button-block"/>Log In</button>
+
+            </form>
+
+        </div>
+
+    </div><!-- tab-content -->
+
+</div> <!-- /form -->
+
+
+<a href="/login">Login</a>
+<a href="/logout">Logout</a>
+<a href="/register">Register</a>
+<a href="/secure">Secure Page</a>
+
+<script src="js/form.js"></script>
+</body>
+</html>
