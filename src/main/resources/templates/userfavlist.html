@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-sringsecurity">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/indexstyle.css">
+    <link rel="stylesheet" href="css/figurestylesheet.css">
+    <script src="js/form.js"></script>
+</head>
+<body>
+<div th:replace="index3 :: navbar"></div>
+<!-- Main -->
+<div id="main">
+    <div class="inner">
+        <header>
+            <h1>Favorites News Directory
+            </h1>
+        </header>
+
+
+        <table>
+            <tr>
+                <th>Favorite News:</th>
+                <th>User</th>
+            </tr>
+
+
+            <tr th:each="news : ${favnewslist}">
+
+                <td th:text="${news.favorites}"></td>
+                <td>
+          <span th:each="user:${news.user}">
+            <p th:text="${user.firstName}"></p>
+          </span>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

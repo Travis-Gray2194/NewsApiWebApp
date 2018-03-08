@@ -8,14 +8,17 @@
     <script src="js/form.js"></script>
 </head>
 <body>
-<!-- TOP Bar -->
 <div th:replace="index3 :: navbar"></div>
+
 <!-- Clear the right and left float so then they not intrapt in next divesion -->
 <div class="clear"></div>
 <!-- Menu Bar -->
 <div id="menu-bar-container">
     <div id="menu-bar">
-        <h1>Top business headlines in the US</h1>
+        <h1>Sports</h1>
+            <!--<p class="lead text-center"><a class="special" class="btn btn-lg btn-info"  th:href="@{/addtofav/{id}(id=${news.id})}" target="_self">-->
+                <!--Add this to My Favorite List-->
+            <!--</a></p>-->
         <div id="local-news">
             <a href="#">find local news</a>
             <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">

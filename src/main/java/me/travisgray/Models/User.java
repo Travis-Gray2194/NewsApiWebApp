@@ -2,6 +2,8 @@ package me.travisgray.Models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="USER_DATA")
@@ -31,6 +33,8 @@ public class User {
     @Column(name="username")
     private String username;
 
+    @ManyToMany()
+    private Set<NewsFavorites> newsfavorites;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -39,6 +43,8 @@ public class User {
     private Collection<Role> roles;
 
     public User() {
+
+        this.newsfavorites = new HashSet<>();
     }
 
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
@@ -114,5 +120,9 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addNewsFav(NewsFavorites nf){
+        this.newsfavorites.add(nf);
     }
 }

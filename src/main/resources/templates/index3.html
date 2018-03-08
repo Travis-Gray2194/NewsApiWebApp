@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/../static/css/weatherindexstyle.css">
 </head>
 <body>
-
 <!-- TOP Bar -->
 <div th:fragment="navbar">
 <div id="topbar">
@@ -22,22 +21,22 @@
     </div>
 
     <div class="topbar-section topbar-menu">
-        News
+        <a th:href="@{/}">Home</a>
     </div>
     <div class="topbar-section topbar-menu">
-        Sport
+        <a th:href="@{/login}">Login</a>
     </div>
     <div class="topbar-section topbar-menu">
-        Weather
+        <a th:href="@{/register}">Register</a>
     </div>
     <div class="topbar-section topbar-menu">
-        Shop
+        <a th:href="@{/newsapi}">Top Stories</a>
     </div>
     <div class="topbar-section topbar-menu">
-        Earth
+        <a th:href="@{/sportsnewsapi}">Sports</a>
     </div>
     <div class="topbar-section topbar-menu">
-        Travel
+        <a th:href="@{/musicnewsapi}">Music</a>
     </div>
     <div class="topbar-section topbar-menu">
         More
@@ -63,9 +62,9 @@
 <!-- Manu Bar 2 -->
 <div id="menu-bar-2">
     <div id="menubar-text">
-        <a href="#">Home</a>
-        <a href="#">Video</a>
-        <a href="#">World</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
         <a href="#">Asia</a>
         <a href="#">UK</a>
         <a href="#">Business</a>

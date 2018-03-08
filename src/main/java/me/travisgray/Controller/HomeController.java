@@ -2,8 +2,11 @@ package me.travisgray.Controller;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import me.travisgray.Models.Article;
+import me.travisgray.Models.NewsFavorites;
 import me.travisgray.Models.RootObject;
 import me.travisgray.Models.User;
+import me.travisgray.Repositories.NewsFavoritesRepository;
+import me.travisgray.Repositories.UserRepository;
 import me.travisgray.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,6 +30,12 @@ public class HomeController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    NewsFavoritesRepository newsFavoritesRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping("/")
     public String index(){
@@ -117,11 +126,50 @@ public class HomeController {
         model.addAttribute("articles" , rootObject.getArticles());
 
 
-        return "listcategories";
+        return "sportscategories";
 
     }
 
+    @RequestMapping("/musicnewsapi")
+    public String showmusiclist(Model model) {
 
+        StringBuilder stringBuilder =  new StringBuilder();
+        RestTemplate restTemplate = new RestTemplate();
+        RootObject rootObject = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?sources=mtv-news&apiKey=11dc03d697484293bf3d12a126d8a398",RootObject .class);
+//        return rootObject.getArticles().get(0).getTitle();
+//        return rootObject.getArticles().get(1).getUrlToImage().toString();
+
+//        StringBuilder articledate = new StringBuilder();
+//        articledate.append(rootObject.getArticles().get(1).getPublishedAt().toString());
+//        model.addAttribute("artdate",articledate);
+        model.addAttribute("articles" , rootObject.getArticles());
+
+
+        return "musiccategories";
+
+    }
+
+    @GetMapping("/addtofav/{id}")
+    public String addnewstofavlist(@PathVariable("id") long id, Model model, Authentication auth){
+
+        NewsFavorites newsFavorites = newsFavoritesRepository.findOne(id);
+//        Must use database user not spring security user
+        User user = userRepository.findByUsername(auth.getName());
+        user.addNewsFav(newsFavorites);
+        newsFavorites.setFavorites("Sports Favorite");
+        model.addAttribute("favnewslist", newsFavoritesRepository.findOne(id));
+        newsFavoritesRepository.save(newsFavorites);
+        userRepository.save(user);
+        model.addAttribute("userlist",userRepository.findAll());
+        model.addAttribute("favoritelist",userRepository.findAll());
+        return "redirect:/list";
+    }
+
+    @GetMapping("/showfounditems")
+    public String showfavoritenews(Model model){
+        model.addAttribute("favnewslist", newsFavoritesRepository.findAllByFavorites("Favorite"));
+        return "userfavlist";
+    }
 
 
 //Testing Method for News APi
