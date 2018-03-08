@@ -30,7 +30,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String index(){
-        return "index";
+        return "index3";
     }
 
     @RequestMapping("/login")
@@ -46,7 +46,7 @@ public class HomeController {
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user",new User());
-        return "registration";
+        return "registration2";
     }
 
     @PostMapping("/register")
@@ -54,12 +54,12 @@ public class HomeController {
 
         model.addAttribute("user",user);
         if(result.hasErrors()){
-            return "registration";
+            return "registration2";
         }else{
             userService.saveUser(user);
             model.addAttribute("message","User Account Successfully Created");
         }
-        return "index";
+        return "index3";
     }
 
 

@@ -1,15 +1,16 @@
 package me.travisgray.Security;
 
 import me.travisgray.Repositories.UserRepository;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.hibernate.criterion.Restrictions.and;
@@ -65,10 +66,17 @@ import static org.hibernate.criterion.Restrictions.and;
 //Runs before complier these are paths that people are premitted to vist and not
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 //WebSecruityConfigurerAdapter: http portocol to close off routes
     @Autowired
     private SSUserDetailsService userDetailsService;
 //    These people have access from our database
+
+
 
     @Autowired
     private UserRepository userRepository;
@@ -81,6 +89,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new SSUserDetailsService(userRepository);
     }
 
+    //Better readability to organize public routes
+    private static final String[] PUBLIC_MATCHERS = {
+            "/",
+            "/h2-console/**",
+            "/register",
+            "/detail/**",
+            "/update/**",
+            "/delete/**",
+            "/additem",
+            "/list",
+            "/search",
+            "/css/**",
+            "/templates/**",
+            "/js/**",
+            "/static/**",
+            "/assets/**",
+            "/fonts/**",
+            "/js/**",
+            "/sass/**",
+            "/images/**",
+            "/addtolost/**",
+            "/addtofound/**",
+            "/addproducttoshoppingcart/**"
+    };
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth)
+            throws Exception{
+        PasswordEncoder pE = passwordEncoder();
+//        Bug within inMemory user and password Encoder saying invalid password and username when correctly typed in
+        auth.inMemoryAuthentication().withUser("tg").password(pE.encode("p")).authorities("USER")
+                .and().withUser("admin").password(pE.encode("password")).authorities("ADMIN");
+        auth.userDetailsService(userDetailsServiceBean());
+
+    }
 //    HttpSecurity: tells us which routes people are allowed to acesses includes methods to restict or alllow access
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -89,7 +132,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antmatchers: if you have a route you want to block off
 //                .permitall: dont need access pages everyone one can acees this route example:register
-                .antMatchers("/","/h2-console/**","/register").permitAll()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
 
 
 
@@ -126,19 +169,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-    throws Exception{
-        auth.inMemoryAuthentication().
-        withUser("user").password("password").authorities("USER").
-        and().
-        withUser("dave").password("begreat").authorities("ADMIN");
 
-//        Database Authentication must come after in memory authentication
-        auth
-                .userDetailsService(userDetailsServiceBean());
-
-    }
 
 
 

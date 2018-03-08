@@ -11,39 +11,7 @@
 </head>
 <body>
 <!-- TOP Bar -->
-<div id="topbar">
-    <div id="signin-div" class="topbar-section">
-
-        <img id="signin-img" src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
-
-        <span id="signin-text">Sign in</span>
-        <span id="signin-text">Login in</span>
-        <span id="signin-text">View Favorites</span>
-    </div>
-
-    <div class="topbar-section topbar-menu">
-        News
-    </div>
-    <div class="topbar-section topbar-menu">
-        Sport
-    </div>
-    <div class="topbar-section topbar-menu">
-        Weather
-    </div>
-    <div class="topbar-section topbar-menu">
-        Shop
-    </div>
-    <div class="topbar-section topbar-menu">
-        Earth
-    </div>
-    <div class="topbar-section topbar-menu">
-        Travel
-    </div>
-    <div class="topbar-section topbar-menu">
-        More
-
-        <img id="more-arrow" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png">
-    </div>
+<div th:replace="index3 :: navbar">
 </div>
 <!-- Clear the right and left float so then they not intrapt in next divesion -->
 <div class="clear"></div>
@@ -96,7 +64,7 @@
             <br>
             <br>
 
-            <form action="#" th:action="@{/register}" th:object="${users}" method="post">
+            <form action="#"  th:action="@{/register}" th:object="${user}" method="POST">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="top-row">
                     <div class="field-wrap">

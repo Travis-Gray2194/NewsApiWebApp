@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-sringsecurity">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/indexstyle.css">
+    <link rel="stylesheet" href="/../static/css/indexstyle.css">
+    <link rel="stylesheet" href="css/weatherindexstyle.css">
+    <link rel="stylesheet" href="/../static/css/weatherindexstyle.css">
+</head>
+<body>
+
+<!-- TOP Bar -->
+<div th:fragment="navbar">
+<div id="topbar">
+    <div id="signin-div" class="topbar-section">
+        <img id="signin-img" src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
+        <a id="signin-text" th:href="@{/}">Home</a>
+        <a id="signin-text" th:href="@{/login}">Login</a>
+        <a id="signin-text" th:href="@{/register}">Register</a>
+    </div>
+
+    <div class="topbar-section topbar-menu">
+        News
+    </div>
+    <div class="topbar-section topbar-menu">
+        Sport
+    </div>
+    <div class="topbar-section topbar-menu">
+        Weather
+    </div>
+    <div class="topbar-section topbar-menu">
+        Shop
+    </div>
+    <div class="topbar-section topbar-menu">
+        Earth
+    </div>
+    <div class="topbar-section topbar-menu">
+        Travel
+    </div>
+    <div class="topbar-section topbar-menu">
+        More
+
+        <img id="more-arrow" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png">
+    </div>
+</div>
+</div>
+<!-- Clear the right and left float so then they not intrapt in next divesion -->
+<div class="clear"></div>
+<!-- Menu Bar -->
+<div id="menu-bar-container">
+    <div id="menu-bar">
+        <h1>Home</h1>
+        <h2 style="color: white">Current user:<span th:text ="${#authentication.getName()}"></span>
+        </h2>
+        <div id="local-news">
+            <a href="#">find local news</a>
+            <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">
+        </div>
+    </div>
+</div>
+<!-- Manu Bar 2 -->
+<div id="menu-bar-2">
+    <div id="menubar-text">
+        <a href="#">Home</a>
+        <a href="#">Video</a>
+        <a href="#">World</a>
+        <a href="#">Asia</a>
+        <a href="#">UK</a>
+        <a href="#">Business</a>
+        <a href="#">Tech</a>
+        <a href="#">Science</a>
+        <a href="#">Magazine</a>
+        <a href="#">Entertainment & Arts</a>
+        <a href="#">Health</a>
+        <a id="no-border" href="#">More
+            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
+        </a>
+    </div>
+</div>
+
+
+<!--Weather Div-->
+<div class="dashboardContainer">
+    <div class="mainScreen">
+        <div class="header vcenter">
+            <div class="logoHold center">
+                <img src="https://i.imgrpost.com/imgr/2018/01/28/mostlycloudy.png" alt="mostlycloudy.png" border="0" />
+            </div>
+            <div class="logoName center">
+                Météo
+            </div>
+        </div>
+        <div class="todayLabel center">Today's Weather</div>
+        <div class="city">Delhi, 29-Jan Mon</div>
+        <div class="sunHolder center">
+            <div class="sun"></div>
+        </div>
+        <div class="infotab center">
+            <div class="temprature">
+                <div class="tempvalue center">
+                    21&#176
+                </div>
+                <div class="condition center">
+                    Sunny
+                </div>
+            </div>
+            <div class="details">
+                <div class="detail">
+                    Mostly Clear
+                </div>
+                <div class="detail">
+                    Humidity : 65%
+                </div>
+                <div class="detail">
+                    Wind : 2 km/h N-E
+                </div>
+                <div class="detail">
+                    Min: 11&#176 &nbsp;&nbsp;Max: 23&#176
+                </div>
+            </div>
+        </div>
+        <div class="future vcenter">
+            <div class="day vcenter">
+                <h5>Tue</h5>
+                <img src="http://i.imgrpost.com/imgr/2017/08/01/006-sunny.png" alt="006-sunny.png" border="0" />
+                <div class="temp">20&#176</div>
+            </div>
+            <div class="day vcenter">
+                <h5>Wed</h5>
+                <img src="http://i.imgrpost.com/imgr/2017/08/01/009-sky.png" alt="009-sky.png" border="0" />
+                <div class="temp">21&#176</div>
+            </div>
+            <div class="day vcenter">
+                <h5>Thu</h5>
+                <img src="http://i.imgrpost.com/imgr/2017/08/01/008-summer-rain.png" alt="008-summer-rain.png" border="0" />
+                <div class="temp">23&#176</div>
+            </div>
+            <div class="day vcenter">
+                <h5>Fri</h5>
+                <img src="http://i.imgrpost.com/imgr/2017/08/01/009-sky.png" alt="009-sky.png" border="0" />
+                <div class="temp">22&#176</div>
+            </div>
+        </div>
+    </div>
+    <div class="widgets">
+        <div class="worldweather">
+            <div class="title">World's Weather Today</div>
+            <div class="future vcenter">
+                <div class="day vcenter">
+                    <h5>Doha</h5>
+                    <img src="http://i.imgrpost.com/imgr/2017/08/01/006-sunny.png" alt="006-sunny.png" border="0" />
+                    <div class="temp">12°C</div>
+                </div>
+                <div class="day vcenter">
+                    <h5>Chicago</h5>
+                    <img src="http://i.imgrpost.com/imgr/2017/08/01/009-sky.png" alt="009-sky.png" border="0" />
+                    <div class="temp">1°C</div>
+                </div>
+                <div class="day vcenter">
+                    <h5>Dublin</h5>
+                    <img src="http://i.imgrpost.com/imgr/2017/08/01/009-sky.png" alt="009-sky.png" border="0" />
+                    <div class="temp">12°C</div>
+                </div>
+                <div class="day vcenter">
+                    <h5>Stockholm</h5>
+                    <img src="https://i.imgrpost.com/imgr/2018/01/28/raining-1.png" alt="raining-1.png" border="0" />
+                    <div class="temp">14°C</div>
+                </div>
+                <div class="day vcenter">
+                    <h5>Sydney</h5>
+                    <img src="https://i.imgrpost.com/imgr/2018/01/28/calm-1.png" alt="calm-1.png" border="0" />
+                    <div class="temp">22&#176</div>
+                </div>
+            </div>
+        </div>
+        <div class="weathernews">
+            <div class="news">
+                <div class="title">News</div>
+                <div class="newsImg center">
+                    <img src="https://i.ndtvimg.com/i/2018-01/cold-wave-delhi-pti_650x400_51515266475.jpg" alt="">
+                </div>
+                <div class="headline">Season's Coldest Day In Delhi</div>
+                <div class="matter">
+                    The national capital on Saturday experienced its first coldest day of this season as the minimum temperature dropped to 4.2 degree Celsius, three notches below the average. Sunday will also be chilly.
+                </div>
+                <div class="button">(more...)</div>
+            </div>
+            <div class="video">
+                <div class="title">Weather Forecast</div>
+                <div class="vidImg">
+                    <div class="play">
+                        <i class="fa fa-play" aria-hidden="true"></i>
+                        <div>Play</div>
+                    </div>
+                </div>
+                <div class="headline">Today's Weather Forecast</div>
+                <div class="source">Source : BBC</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Weather div-->
+
+<a href="/login">Login</a>
+<a href="/logout">Logout</a>
+<a href="/register">Register</a>
+<a href="/secure">Secure Page</a>
+
+<script src="js/form.js"></script>
+</body>
+</html>
