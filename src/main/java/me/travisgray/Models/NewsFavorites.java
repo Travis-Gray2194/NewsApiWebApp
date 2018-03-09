@@ -12,23 +12,37 @@ public class NewsFavorites {
     private long id;
 
 
+    private String topic;
 
-    private String favorites;
 
-@ManyToMany(mappedBy = "newsfavorites")
+@ManyToMany(mappedBy = "news")
     private Set<User> user;
 
-    public NewsFavorites(String favorites) {
-        this.favorites = favorites;
+
+
+    public NewsFavorites() {
+    }
+
+    public NewsFavorites(String topic) {
+        this.topic = topic;
         this.user = new HashSet<User>();
+
     }
 
-    public String getFavorites() {
-        return favorites;
+    public long getId() {
+        return id;
     }
 
-    public void setFavorites(String favorites) {
-        this.favorites = favorites;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public void addUser (User u){

@@ -34,7 +34,7 @@ public class User {
     private String username;
 
     @ManyToMany()
-    private Set<NewsFavorites> newsfavorites;
+    private Set<NewsFavorites> news;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -44,7 +44,7 @@ public class User {
 
     public User() {
 
-        this.newsfavorites = new HashSet<>();
+        this.news = new HashSet<>();
     }
 
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
@@ -123,6 +123,6 @@ public class User {
     }
 
     public void addNewsFav(NewsFavorites nf){
-        this.newsfavorites.add(nf);
+        this.news.add(nf);
     }
 }

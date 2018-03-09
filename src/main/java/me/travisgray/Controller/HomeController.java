@@ -32,8 +32,7 @@ public class HomeController {
     UserService userService;
 
     @Autowired
-    NewsFavoritesRepository newsFavoritesRepository;
-
+NewsFavoritesRepository newsFavoritesRepository;
     @Autowired
     UserRepository userRepository;
 
@@ -136,12 +135,6 @@ public class HomeController {
         StringBuilder stringBuilder =  new StringBuilder();
         RestTemplate restTemplate = new RestTemplate();
         RootObject rootObject = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?sources=mtv-news&apiKey=11dc03d697484293bf3d12a126d8a398",RootObject .class);
-//        return rootObject.getArticles().get(0).getTitle();
-//        return rootObject.getArticles().get(1).getUrlToImage().toString();
-
-//        StringBuilder articledate = new StringBuilder();
-//        articledate.append(rootObject.getArticles().get(1).getPublishedAt().toString());
-//        model.addAttribute("artdate",articledate);
         model.addAttribute("articles" , rootObject.getArticles());
 
 
@@ -149,27 +142,27 @@ public class HomeController {
 
     }
 
-    @GetMapping("/addtofav/{id}")
-    public String addnewstofavlist(@PathVariable("id") long id, Model model, Authentication auth){
+//    @GetMapping("/addtofav/{id}")
+//    public String addnewstofavlist(@PathVariable("id") long id, Model model, Authentication auth){
+//
+//        NewsFavorites newsFavorites = newsFavoritesRepository.findOne(id);
+////        Must use database user not spring security user
+//        User user = userRepository.findByUsername(auth.getName());
+//        user.addNewsFav(newsFavorites);
+//        newsFavorites.setFavorites("Sports Favorite");
+//        model.addAttribute("favnewslist", newsFavoritesRepository.findOne(id));
+//        newsFavoritesRepository.save(newsFavorites);
+//        userRepository.save(user);
+//        model.addAttribute("userlist",userRepository.findAll());
+//        model.addAttribute("favoritelist",userRepository.findAll());
+//        return "redirect:/list";
+//    }
 
-        NewsFavorites newsFavorites = newsFavoritesRepository.findOne(id);
-//        Must use database user not spring security user
-        User user = userRepository.findByUsername(auth.getName());
-        user.addNewsFav(newsFavorites);
-        newsFavorites.setFavorites("Sports Favorite");
-        model.addAttribute("favnewslist", newsFavoritesRepository.findOne(id));
-        newsFavoritesRepository.save(newsFavorites);
-        userRepository.save(user);
-        model.addAttribute("userlist",userRepository.findAll());
-        model.addAttribute("favoritelist",userRepository.findAll());
-        return "redirect:/list";
-    }
-
-    @GetMapping("/showfounditems")
-    public String showfavoritenews(Model model){
-        model.addAttribute("favnewslist", newsFavoritesRepository.findAllByFavorites("Favorite"));
-        return "userfavlist";
-    }
+//    @GetMapping("/showfounditems")
+//    public String showfavoritenews(Model model){
+//        model.addAttribute("favnewslist", newsFavoritesRepository.findAllByFavorites("Favorite"));
+//        return "userfavlist";
+//    }
 
 
 //Testing Method for News APi
@@ -199,6 +192,22 @@ public class HomeController {
 //    }
 
 
+
+    @GetMapping("/selecttopics")
+    public String selecttopics(Model model){
+        model.addAttribute("newsfavorites",new NewsFavorites());
+        return "topicchoice";
+
+    }
+    @PostMapping("/topic")
+    public String showtopics(HttpServletRequest request,RootObject rootObject, Model model){
+        String topic = request.getParameter("topic");
+        RestTemplate restTemplate = new RestTemplate();
+        rootObject= restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&category="+topic+"&apiKey=11dc03d697484293bf3d12a126d8a398", RootObject.class);
+        model.addAttribute("articles",rootObject.getArticles());
+
+        return "listcategories";
+    }
 
     @RequestMapping("/secure")
     public String secure(HttpServletRequest request, Authentication authentication, Principal principal) {
