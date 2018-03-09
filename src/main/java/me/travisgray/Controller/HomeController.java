@@ -32,12 +32,14 @@ public class HomeController {
     UserService userService;
 
     @Autowired
-NewsFavoritesRepository newsFavoritesRepository;
+    NewsFavoritesRepository newsFavoritesRepository;
     @Autowired
     UserRepository userRepository;
 
     @RequestMapping("/")
-    public String index(){
+    public String index(Model model){
+
+        model.addAttribute("news",new NewsFavorites());
         return "index3";
     }
 
@@ -170,6 +172,12 @@ NewsFavoritesRepository newsFavoritesRepository;
 //
 //    }
 
+    @GetMapping("/list")
+    public String listitems(Model model){
+        model.addAttribute("newslist",newsFavoritesRepository.findAll());
+        return "newsfavlist";
+    }
+
 
 
     @GetMapping("/selecttopics")
@@ -183,6 +191,24 @@ NewsFavoritesRepository newsFavoritesRepository;
         String topic = request.getParameter("topic");
         RestTemplate restTemplate = new RestTemplate();
         rootObject= restTemplate.getForObject("https://newsapi.org/v2/top-headlines?country=us&category="+topic+"&apiKey=11dc03d697484293bf3d12a126d8a398", RootObject.class);
+        model.addAttribute("articles",rootObject.getArticles());
+
+        return "listcategories";
+    }
+
+
+    @GetMapping("/searchtopics")
+    public String searchtopics(Model model){
+        model.addAttribute("newsfavorites",new NewsFavorites());
+        return "searchtopicchoice2";
+
+    }
+
+    @PostMapping("/searchtopic")
+    public String searchtopics(HttpServletRequest request,RootObject rootObject, Model model){
+        String topic = request.getParameter("topic");
+        RestTemplate restTemplate = new RestTemplate();
+        rootObject= restTemplate.getForObject("https://newsapi.org/v2/everything?q="+topic+"&apiKey=11dc03d697484293bf3d12a126d8a398", RootObject.class);
         model.addAttribute("articles",rootObject.getArticles());
 
         return "listcategories";

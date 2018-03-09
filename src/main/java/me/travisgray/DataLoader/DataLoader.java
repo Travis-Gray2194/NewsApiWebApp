@@ -55,5 +55,7 @@ public class DataLoader implements CommandLineRunner {
         userRepository.save(user4);
 
 
+        NewsFavorites sports1 = new NewsFavorites("Sports");
+        newsFavoritesRepository.save(sports1);
     }
 }
