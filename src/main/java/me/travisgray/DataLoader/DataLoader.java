@@ -1,7 +1,9 @@
 package me.travisgray.DataLoader;
 
+import me.travisgray.Models.NewsFavorites;
 import me.travisgray.Models.Role;
 import me.travisgray.Models.User;
+import me.travisgray.Repositories.NewsFavoritesRepository;
 import me.travisgray.Repositories.RoleRepository;
 import me.travisgray.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    NewsFavoritesRepository newsFavoritesRepository;
 
     @Override
     public void run(String... strings) throws Exception {
@@ -48,5 +53,7 @@ public class DataLoader implements CommandLineRunner {
         User user4 = new User("clark@kent.com", "password", "Clark", "Kent", true, "clark");
         user4.setRoles(Arrays.asList(userRole, adminRole));
         userRepository.save(user4);
+
+
     }
 }

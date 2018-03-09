@@ -44,33 +44,32 @@
         </a>
     </div>
 </div>
+<br>
 
-<div class="form">
-    <form  id = "contact"  th:action="@{/{category}}"  th:object="${profile}" method="post">
-
-        <h4>Topics</h4>
-        <input type="hidden" th:field="*{id}"/>
-
-
-        <h4>Select Topic</h4>
-        <select th:field="*{category}" name="category">
-            <option value="Business"> business </option>
-            <option value="Entertainment">entertainment </option>
-            <option value="Health">health</option>
-            <option value="Science"> science </option>
-            <option value="Sports">sports </option>
-            <option value="Technology">technology </option>
-        </select>
-
-
-
-
-
-        <fieldset>
-            <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
-        </fieldset>
-
-</div> <!-- /form -->
+<h4>New User Registration</h4>
+<form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="POST">
+    First Name <mark><strong>
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
+</strong></mark>
+    <input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}"/> <br/>
+    Last Name <mark><strong>
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">First Name Error</span>
+</strong></mark>
+    <input type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}"/> <br/>
+    Email <mark><strong>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">First Name Error</span>
+</strong></mark>
+    <input type="text" id="email" placeholder="Email" th:field="*{email}"/> <br/>
+    User Name <mark><strong>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">First Name Error</span>
+</strong></mark>
+    <input type="text" id="username" placeholder="Username" th:field="*{username}"/> <br/>
+    Password <mark><strong>
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">First Name Error</span>
+</strong></mark>
+    <input type="text" id="password" placeholder="Password" th:field="*{password}"/> <br/>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
 
 
 <a href="/login">Login</a>

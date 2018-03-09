@@ -48,6 +48,7 @@
 
             <div class="center-on-page">
                 <h1 style="color: brown">Topics Selection</h1>
+                <p>We crawl and index news articles from over 5,000 news sources and blogs. We also monitor the top and breaking news headlines from the following 134 of the most notable of these sources. </p>
                 <form action="#"  th:action="@{/topic}" th:object="${newsfavorites}" method="POST">
                     <input type="hidden" th:field="*{id}"/>
                 <div class="select">
@@ -62,6 +63,8 @@
                 </div>
 
                     <button type="submit" class="button-three">Click Me</button>
+                </form>
+            </div>
 
                     <a href="/login">Login</a>
 <a href="/logout">Logout</a>
