@@ -212,6 +212,42 @@ public class HomeController {
         return "listcategories";
     }
 
+    @GetMapping("/addtopics")
+    public String addtopics(Model model){
+        model.addAttribute("newsfavorites",new NewsFavorites());
+        return "topicchoice3";
+
+    }
+
+    @PostMapping("/addtopic")
+    public String addtopicstouserlist(HttpServletRequest request,RootObject rootObject, Model model,Authentication auth,@ModelAttribute("newsfavorites") NewsFavorites newsFavorites){
+        String topicfav = request.getParameter("topic");
+        RestTemplate restTemplate = new RestTemplate();
+        rootObject= restTemplate.getForObject("https://newsapi.org/v2/everything?q="+topicfav+"&apiKey=11dc03d697484293bf3d12a126d8a398", RootObject.class);
+        model.addAttribute("articles",rootObject.getArticles());
+        newsFavorites.setTopic(topicfav);
+        newsFavoritesRepository.save(newsFavorites);
+        model.addAttribute("newsfavorites", newsFavoritesRepository.findAll());
+        return "listcategorieswithtopics";
+    }
+
+    @GetMapping("/showalltopics")
+    public String showtopics(Model model){
+        model.addAttribute("newsfavorites", newsFavoritesRepository.findAll());
+        return "listcategorieswithtopics";
+
+    }
+
+    @GetMapping("/removetopics")
+    public String removetopicstouserlist(HttpServletRequest request,RootObject rootObject, Model model,Authentication auth,@ModelAttribute("newsfavorites") NewsFavorites newsFavorites){
+        String topicfav = request.getParameter("topic");
+        RestTemplate restTemplate = new RestTemplate();
+        rootObject= restTemplate.getForObject("https://newsapi.org/v2/everything?q="+topicfav+"&apiKey=11dc03d697484293bf3d12a126d8a398", RootObject.class);
+        model.addAttribute("articles",rootObject.getArticles());
+        newsFavorites.setTopic(null);
+        newsFavoritesRepository.save(newsFavorites);
+        return "redirect:/showalltopics";
+    }
 
 
 

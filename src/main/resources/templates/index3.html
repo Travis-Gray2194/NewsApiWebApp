@@ -11,45 +11,48 @@
 </head>
 <body>
 <!-- TOP Bar -->
-<div th:fragment="navbar">
-<div id="topbar">
-    <div id="signin-div" class="topbar-section">
-        <img id="signin-img" src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
-        <a id="signin-text" th:href="@{/}">Home</a>
-        <a id="signin-text" th:href="@{/login}">Login</a>
-        <a id="signin-text" th:href="@{/register}">Register</a>
-    </div>
+<!--<div th:fragment="navbar">-->
+<!--<div id="topbar">-->
+    <!--<div id="signin-div" class="topbar-section">-->
+        <!--<img id="signin-img" src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">-->
+        <!--<a id="signin-text" th:href="@{/}">Home</a>-->
+        <!--<a id="signin-text" th:href="@{/login}">Login</a>-->
+        <!--<a id="signin-text" th:href="@{/register}">Register</a>-->
+    <!--</div>-->
 
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/}">Home</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/login}">Login</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/register}">Register</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/newsapi}">Top Stories</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/sportsnewsapi}">Sports</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/musicnewsapi}">Music</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/selecttopics}">Select Topics</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        <a th:href="@{/searchtopics}">Search Topics</a>
-    </div>
-    <div class="topbar-section topbar-menu">
-        More
-        <img id="more-arrow" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png">
-    </div>
-</div>
-</div>
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/}">Home</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/login}">Login</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/register}">Register</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/newsapi}">Top Stories</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/sportsnewsapi}">Sports</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/musicnewsapi}">Music</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/selecttopics}">Select Topics</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/searchtopics}">Search Topics</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/addtopics}">Add Topics</a>-->
+    <!--</div>-->
+    <!--<div class="topbar-section topbar-menu">-->
+        <!--<a th:href="@{/showalltopics}">Show Topics</a>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<div th:fragment="menubar">
 <!-- Clear the right and left float so then they not intrapt in next divesion -->
 <div class="clear"></div>
 <!-- Menu Bar -->
@@ -65,25 +68,21 @@
     </div>
 </div>
 <!-- Manu Bar 2 -->
-<div id="menu-bar-2">
+<div  id="menu-bar-2">
     <div id="menubar-text">
         <a th:href="@{/}">Home</a>
         <a th:href="@{/login}">Login</a>
         <a th:href="@{/register}">Register</a>
-        <a href="#">Asia</a>
-        <a href="#">UK</a>
-        <a href="#">Business</a>
-        <a href="#">Tech</a>
-        <a href="#">Science</a>
-        <a href="#">Magazine</a>
-        <a href="#">Entertainment & Arts</a>
-        <a href="#">Health</a>
-        <a id="no-border" href="#">More
-            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
-        </a>
+        <a th:href="@{/newsapi}">Top Stories</a>
+        <a th:href="@{/sportsnewsapi}">Sports</a>
+        <a th:href="@{/musicnewsapi}">Music</a>
+        <a th:href="@{/showalltopics}">Show Topics</a>
+        <a th:href="@{/addtopics}">Add Topics</a>
+        <a th:href="@{/searchtopics}">Search</a>
+        <a th:href="@{/selecttopics}">Select Topics</a>
     </div>
 </div>
-
+</div>
 
 <!--Weather Div-->
 <div class="dashboardContainer">
@@ -207,10 +206,7 @@
 </div>
 <!--End Weather div-->
 
-<a href="/login">Login</a>
-<a href="/logout">Logout</a>
-<a href="/register">Register</a>
-<a href="/secure">Secure Page</a>
+
 
 <script src="js/form.js"></script>
 </body>

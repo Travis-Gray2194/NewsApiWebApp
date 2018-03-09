@@ -10,51 +10,10 @@
 <body>
 <!-- TOP Bar -->
 <div th:replace="index3 :: navbar"></div>
-<!-- Clear the right and left float so then they not intrapt in next divesion -->
-<div class="clear"></div>
-<!-- Menu Bar -->
-<div id="menu-bar-container">
-    <div id="menu-bar">
-        <h1>Favorite List</h1>
-    </div>
-</div>
-<!-- Manu Bar 2 -->
-<div id="menu-bar-2">
-    <div id="menubar-text">
-        <a href="#">Home</a>
-        <a href="#">Video</a>
-        <a href="#">World</a>
-        <a href="#">Asia</a>
-        <a href="#">UK</a>
-        <a href="#">Business</a>
-        <a href="#">Tech</a>
-        <a href="#">Science</a>
-        <a href="#">Magazine</a>
-        <a href="#">Entertainment & Arts</a>
-        <a href="#">Health</a>
-        <a id="no-border" href="#">More
-            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
-        </a>
-    </div>
-</div>
+<div th:fragment="menubar"></div>
+
 <br>
-<figure class="snip1253" th:each="news : ${newslist}">
-    <div class="image"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/mac_apps/itunes/iphone7-ipad-use-news-hero.jpg" alt="sample52"/></div>
-    <figcaption>
-        <h3><span name="favtopicid" th:inline="text"> [[${news.topic}]] </span></h3>
-        <p>
-            <span th:inline="text"> Here are your favorite News Selections</span>
-        </p>
-        <span th:each="user:${newslist.user}">
-            <p th:text="${user.firstName}"></p>
-          </span>
-    </figcaption>
-    <footer>
-        <div class="views"></div>
-        <div class="love"><i class="ion-heart"></i>Saved Topic</div>
-        <div class="comments"><i class="ion-chatboxes"></i>23</div>
-    </footer>
-</figure>
+
 <br>
 </body>
 </html>

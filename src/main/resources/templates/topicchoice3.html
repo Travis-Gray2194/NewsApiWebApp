@@ -16,7 +16,9 @@
 <!-- TOP Bar -->
 <div th:replace="index3 :: navbar">
 </div>
-<div th:replace="index3 :: menubar"></div>
+<!-- Clear the right and left float so then they not intrapt in next divesion -->
+<div th:fragment="menubar"></div>
+
 <aside class="profile-card">
     <header>
         <!-- here’s the avatar -->
@@ -41,21 +43,21 @@
     <div class="profile-bio">
 
         <p>
-            News Api crawl and index news articles from over 5,000 news sources and blogs.
+            Add Topic to Favorites
         </p>
-        <form action="#"  th:action="@{/searchtopic}" th:object="${newsfavorites}" method="POST">
+        <form action="#"  th:action="@{/addtopic}" th:object="${newsfavorites}" method="POST">
             <input type="hidden" th:field="*{id}"/>
             <div class="select">
                 <input th:field="*{topic}" name="topic" value="topic" id="slct">
                 </input>
             </div>
 
-            <button type="submit" class="button-three">Search</button>
+            <button type="submit" class="button-three">Add to Favorites</button>
         </form>
     </div>
 </aside>
 
-                    <a href="/login">Login</a>
+<a href="/login">Login</a>
 <a href="/logout">Logout</a>
 <a href="/register">Register</a>
 <a href="/secure">Secure Page</a>

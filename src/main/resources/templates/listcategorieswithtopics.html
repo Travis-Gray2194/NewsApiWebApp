@@ -10,9 +10,33 @@
 <body>
 <!-- TOP Bar -->
 <div th:replace="index3 :: navbar"></div>
+<!-- Clear the right and left float so then they not intrapt in next divesion -->
 <div th:replace="index3 :: menubar"></div>
 
 <br>
+
+<figure class="snip1253" th:each="news : ${newsfavorites}" th:if="${news.topic != null}" >
+    <div class="image"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/mac_apps/itunes/iphone7-ipad-use-news-hero.jpg" alt="sample52"/></div>
+    <figcaption>
+        <h3><span th:text="${news.topic}"></span></h3>
+        <a th:href="@{/removetopics}">Remove Topic</a>
+        <p>
+            <span th:inline="text"> Here are your favorite News Selections</span>
+        </p>
+        <!--<span th:each="user:${newslist.user}">-->
+            <!--<p th:text="${user.firstName}"></p>-->
+          <!--</span>-->
+    </figcaption>
+    <footer>
+        <div class="views"></div>
+        <div class="love"><i class="ion-heart"></i>Saved Topic</div>
+        <div class="comments"><i class="ion-chatboxes"></i>23</div>
+    </footer>
+</figure>
+<hr>
+<hr>
+<h1> Articles </h1>
+
 <figure class="snip1253" th:each="rb : ${articles}" th:if="${rb.urlToImage != null}">
     <div class="image"><img th:src="${rb.urlToImage}" alt="sample52"/></div>
     <figcaption>
@@ -24,6 +48,7 @@
         </p>
         <p>Authour:
             <span th:inline="text"> [[${rb.author}]]</span></p>
+
     </figcaption>
     <footer>
         <div class="views"><i class="ion-eye"></i>2,907</div>
