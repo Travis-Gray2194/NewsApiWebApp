@@ -15,11 +15,7 @@
 <!-- Menu Bar -->
 <div id="menu-bar-container">
     <div id="menu-bar">
-        <h1>News</h1>
-        <div id="local-news">
-            <a href="#">find local news</a>
-            <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">
-        </div>
+        <h1>Favorite List</h1>
     </div>
 </div>
 <!-- Manu Bar 2 -->
@@ -43,18 +39,19 @@
 </div>
 <br>
 <figure class="snip1253" th:each="news : ${newslist}">
-    <div class="image"><img th:src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/mac_apps/itunes/iphone7-ipad-use-news-hero.jpg" alt="sample52"/></div>
+    <div class="image"><img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/mac_apps/itunes/iphone7-ipad-use-news-hero.jpg" alt="sample52"/></div>
     <figcaption>
-        <a>Favorite </a>
-        <div class="date"><span class="month">Saved Topic</span></div>
-        <h3><span  th:inline="text"> [[${news.topic}]] </span></h3>
+        <h3><span name="favtopicid" th:inline="text"> [[${news.topic}]] </span></h3>
         <p>
             <span th:inline="text"> Here are your favorite News Selections</span>
         </p>
+        <span th:each="user:${newslist.user}">
+            <p th:text="${user.firstName}"></p>
+          </span>
     </figcaption>
     <footer>
-        <div class="views"><i class="ion-eye"></i>2,907</div>
-        <div class="love"><i class="ion-heart"></i>623</div>
+        <div class="views"></div>
+        <div class="love"><i class="ion-heart"></i>Saved Topic</div>
         <div class="comments"><i class="ion-chatboxes"></i>23</div>
     </footer>
 </figure>

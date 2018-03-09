@@ -172,11 +172,9 @@ public class HomeController {
 //
 //    }
 
-    @GetMapping("/list")
-    public String listitems(Model model){
-        model.addAttribute("newslist",newsFavoritesRepository.findAll());
-        return "newsfavlist";
-    }
+
+
+
 
 
 
@@ -213,6 +211,7 @@ public class HomeController {
 
         return "listcategories";
     }
+
 
 
 
