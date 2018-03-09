@@ -112,7 +112,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/addtolost/**",
             "/addtofound/**",
             "/addproducttoshoppingcart/**",
+            "/newsapi",
+            "/removetopics",
+            "/showalltopics",
+            "/addtopic",
+            "/addtopics",
+            "/searchtopic",
+            "/searchtopics",
+            "/topic",
+            "/selecttopics",
             "/newsapi"
+
     };
 
     @Override
