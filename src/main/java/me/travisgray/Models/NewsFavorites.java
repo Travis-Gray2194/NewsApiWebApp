@@ -15,7 +15,7 @@ public class NewsFavorites {
     private String topic;
 
 
-@ManyToMany(mappedBy = "news")
+    @ManyToMany(mappedBy = "news")
     private Set<User> user;
 
 
@@ -47,5 +47,13 @@ public class NewsFavorites {
 
     public void addUser (User u){
         this.user.add(u);
+    }
+
+    public Set<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
     }
 }

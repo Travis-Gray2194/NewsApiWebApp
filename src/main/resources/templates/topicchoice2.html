@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-sringsecurity">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/indexstyle.css">
+    <link rel="stylesheet" href="css/signupstyle.css">
+    <link rel="stylesheet" href="/../static/css/indexstyle.css">
+    <link rel="stylesheet" href="/../static/css/signupstyle.css">
+    <link rel="stylesheet" href="../static/css/topicstyle.css">
+    <link rel="stylesheet" href="../static/css/topicscard.css">
+    <link rel="stylesheet" href="css/topicscard.css">
+</head>
+<body>
+<!-- TOP Bar -->
+<div th:replace="index3 :: navbar">
+</div>
+<!-- Clear the right and left float so then they not intrapt in next divesion -->
+<div class="clear"></div>
+<!-- Menu Bar -->
+<div id="menu-bar-container">
+    <div id="menu-bar">
+        <h1></h1>
+        <div id="local-news">
+            <a href="#">find local news</a>
+            <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">
+        </div>
+    </div>
+</div>
+<!-- Manu Bar 2 -->
+<div id="menu-bar-2">
+    <div id="menubar-text">
+        <a href="#">Home</a>
+        <a href="#">Video</a>
+        <a href="#">World</a>
+        <a href="#">Asia</a>
+        <a href="#">UK</a>
+        <a href="#">Business</a>
+        <a href="#">Tech</a>
+        <a href="#">Science</a>
+        <a href="#">Magazine</a>
+        <a href="#">Entertainment & Arts</a>
+        <a href="#">Health</a>
+        <a id="no-border" href="#">More
+            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
+        </a>
+    </div>
+</div>
+<aside class="profile-card">
+    <header>
+        <!-- here’s the avatar -->
+
+        <!-- the username -->
+        <h1>
+            Topics Selection
+        </h1>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- and role or location -->
+        <h2>
+            News Api Results
+        </h2>
+
+    </header>
+
+    <!-- bit of a bio; who are you? -->
+    <div class="profile-bio">
+
+        <p>
+            News Api crawl and index news articles from over 5,000 news sources and blogs.
+        </p>
+        <form action="#"  th:action="@{/topic}" th:object="${newsfavorites}" method="POST">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="select">
+                <select th:field="*{topic}" name="topic"   id="slct">
+                    <option value="Business"> Business </option>
+                    <option value="Entertainment">Entertainment </option>
+                    <option value="Health">Health</option>
+                    <option value="Science"> Science </option>
+                    <option value="Sports">Sports </option>
+                    <option value="Technology">Technology </option>
+                </select>
+            </div>
+
+            <button type="submit" class="button-three">Click Me</button>
+        </form>
+    </div>
+</aside>
+
+                    <a href="/login">Login</a>
+<a href="/logout">Logout</a>
+<a href="/register">Register</a>
+<a href="/secure">Secure Page</a>
+
+<script src="js/form.js"></script>
+</body>
+</html>

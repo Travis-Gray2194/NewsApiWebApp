@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-sringsecurity">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/indexstyle.css">
+    <link rel="stylesheet" href="css/signupstyle.css">
+    <link rel="stylesheet" href="/../static/css/indexstyle.css">
+    <link rel="stylesheet" href="/../static/css/signupstyle.css">
+    <link rel="stylesheet" href="../static/css/topicstyle.css">
+    <link rel="stylesheet" href="../static/css/topicscard.css">
+    <link rel="stylesheet" href="css/topicscard.css">
+</head>
+<body>
+<!-- TOP Bar -->
+<div th:replace="index3 :: navbar">
+</div>
+<div th:replace="index3 :: menubar"></div>
+<aside class="profile-card">
+    <header>
+        <!-- here’s the avatar -->
+
+        <!-- the username -->
+        <h1>
+            Topics Selection
+        </h1>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- and role or location -->
+        <h2>
+            News Api Results
+        </h2>
+
+    </header>
+
+    <!-- bit of a bio; who are you? -->
+    <div class="profile-bio">
+
+        <p>
+            News Api crawl and index news articles from over 5,000 news sources and blogs.
+        </p>
+        <form action="#"  th:action="@{/searchtopic}" th:object="${newsfavorites}" method="POST">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="select">
+                <input th:field="*{topic}" name="topic" value="topic" id="slct">
+                </input>
+            </div>
+
+            <button type="submit" class="button-three">Search</button>
+        </form>
+    </div>
+</aside>
+
+                    <a href="/login">Login</a>
+<a href="/logout">Logout</a>
+<a href="/register">Register</a>
+<a href="/secure">Secure Page</a>
+
+<script src="js/form.js"></script>
+</body>
+</html>
