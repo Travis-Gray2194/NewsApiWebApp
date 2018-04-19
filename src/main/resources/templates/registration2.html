@@ -8,76 +8,47 @@
     <link rel="stylesheet" href="css/signupstyle.css">
     <link rel="stylesheet" href="/../static/css/indexstyle.css">
     <link rel="stylesheet" href="/../static/css/signupstyle.css">
+    <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/form.css">
+
 </head>
 <body>
 <!-- TOP Bar -->
-<div th:replace="index3 :: navbar">
-</div>
+<div th:replace="index3 :: navbar"></div>
 <!-- Clear the right and left float so then they not intrapt in next divesion -->
 <div class="clear"></div>
 <!-- Menu Bar -->
-<div id="menu-bar-container">
-    <div id="menu-bar">
-        <h1>New User Registration</h1>
-        <div id="local-news">
-            <a href="#">find local news</a>
-            <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">
-        </div>
-    </div>
-</div>
-<!-- Manu Bar 2 -->
-<div id="menu-bar-2">
-    <div id="menubar-text">
-        <a href="#">Home</a>
-        <a href="#">Video</a>
-        <a href="#">World</a>
-        <a href="#">Asia</a>
-        <a href="#">UK</a>
-        <a href="#">Business</a>
-        <a href="#">Tech</a>
-        <a href="#">Science</a>
-        <a href="#">Magazine</a>
-        <a href="#">Entertainment & Arts</a>
-        <a href="#">Health</a>
-        <a id="no-border" href="#">More
-            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
-        </a>
-    </div>
+<div th:replace="index3 :: menubar">
 </div>
 
-<div class="form">
-    <form  id = "contact"  th:action="@{/{category}}"  th:object="${profile}" method="post">
-
-        <h4>Topics</h4>
-        <input type="hidden" th:field="*{id}"/>
-
-
-        <h4>Select Topic</h4>
-        <select th:field="*{category}" name="category">
-            <option value="Business"> business </option>
-            <option value="Entertainment">entertainment </option>
-            <option value="Health">health</option>
-            <option value="Science"> science </option>
-            <option value="Sports">sports </option>
-            <option value="Technology">technology </option>
-        </select>
-
-
-
-
-
-        <fieldset>
-            <button type="submit" id="contact-submit"  data-submit="...Sending">Submit</button>
-        </fieldset>
-
-</div> <!-- /form -->
-
-
-<a href="/login">Login</a>
-<a href="/logout">Logout</a>
-<a href="/register">Register</a>
-<a href="/secure">Secure Page</a>
-
+<div class="body-content">
+    <div class="module">
+        <h1 style="color:#BB1919">Create an account</h1>
+        <form th:action="@{/register}" th:object="${user}" method="POST">
+            <div class="alert alert-error"></div>
+            First Name <mark><strong>
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
+        </strong></mark>
+            <input style="color:#BB1919" type="text" id="firstName" placeholder="First Name" th:field="*{firstName}"/> <br/>
+            Last Name <mark><strong>
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">First Name Error</span>
+        </strong></mark>
+            <input style="color:#BB1919" type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}"/> <br/>
+            Email <mark><strong>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">First Name Error</span>
+        </strong></mark>
+            <input style="color:#BB1919" type="text" id="email" placeholder="Email" th:field="*{email}"/> <br/>
+            User Name <mark><strong>
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">First Name Error</span>
+        </strong></mark>
+            <input style="color:#BB1919" type="text" id="username" placeholder="Username" th:field="*{username}"/> <br/>
+            Password <mark><strong>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">First Name Error</span>
+        </strong></mark>
+            <input style="color:#BB1919" type="text" id="password" placeholder="Password" th:field="*{password}"/> <br/>
+        </form>
+    </div>
+</div>
 <script src="js/form.js"></script>
 </body>
 </html>

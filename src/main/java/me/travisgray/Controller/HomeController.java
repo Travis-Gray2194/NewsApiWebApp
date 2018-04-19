@@ -33,6 +33,7 @@ public class HomeController {
 
     @Autowired
 NewsFavoritesRepository newsFavoritesRepository;
+
     @Autowired
     UserRepository userRepository;
 
@@ -191,7 +192,12 @@ NewsFavoritesRepository newsFavoritesRepository;
 //
 //    }
 
+    @GetMapping("/userfavs")
+    public String userfavstopics(Model model){
+        model.addAttribute("favnewslist",newsFavoritesRepository.findAll());
+        return "userfavlist";
 
+    }
 
     @GetMapping("/selecttopics")
     public String selecttopics(Model model){

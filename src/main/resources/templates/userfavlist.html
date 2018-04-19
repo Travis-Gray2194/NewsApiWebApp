@@ -8,7 +8,13 @@
     <script src="js/form.js"></script>
 </head>
 <body>
+<!-- TOP Bar -->
 <div th:replace="index3 :: navbar"></div>
+<!-- Clear the right and left float so then they not intrapt in next divesion -->
+<div class="clear"></div>
+<!-- Menu Bar -->
+<div th:replace="index3 :: menubar">
+</div>
 <!-- Main -->
 <div id="main">
     <div class="inner">
@@ -21,7 +27,7 @@
         <table>
             <tr>
                 <th>Favorite News:</th>
-                <th>User</th>
+                <th>User topics</th>
             </tr>
 
 

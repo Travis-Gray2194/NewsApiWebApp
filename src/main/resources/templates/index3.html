@@ -15,9 +15,8 @@
 <div id="topbar">
     <div id="signin-div" class="topbar-section">
         <img id="signin-img" src="https://image.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg">
-        <a id="signin-text" th:href="@{/}">Home</a>
-        <a id="signin-text" th:href="@{/login}">Login</a>
-        <a id="signin-text" th:href="@{/register}">Register</a>
+        <a id="signin-text" th:text ="${#authentication.getName()}">Account:
+        </a>
     </div>
 
     <div class="topbar-section topbar-menu">
@@ -41,10 +40,6 @@
     <div class="topbar-section topbar-menu">
         <a th:href="@{/selecttopics}">Select Topics</a>
     </div>
-    <div class="topbar-section topbar-menu">
-        More
-        <img id="more-arrow" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png">
-    </div>
 </div>
 </div>
 <!-- Clear the right and left float so then they not intrapt in next divesion -->
@@ -53,31 +48,19 @@
 <div id="menu-bar-container">
     <div id="menu-bar">
         <h1>Home</h1>
-        <h2 style="color: white">Current user:<span th:text ="${#authentication.getName()}"></span>
-        </h2>
-        <div id="local-news">
-            <a href="#">find local news</a>
-            <img id="location-img" src="http://www.universiteitvannederland.nl/wp-content/themes/uvn/img/icons/icon-location.svg">
-        </div>
+        </br >
     </div>
 </div>
 <!-- Manu Bar 2 -->
-<div id="menu-bar-2">
+<div id="menu-bar-2" th:fragment="menubar">
     <div id="menubar-text">
+
         <a th:href="@{/}">Home</a>
         <a th:href="@{/login}">Login</a>
         <a th:href="@{/register}">Register</a>
-        <a href="#">Asia</a>
-        <a href="#">UK</a>
-        <a href="#">Business</a>
-        <a href="#">Tech</a>
-        <a href="#">Science</a>
-        <a href="#">Magazine</a>
-        <a href="#">Entertainment & Arts</a>
-        <a href="#">Health</a>
-        <a id="no-border" href="#">More
-            <img id="more-arrow" src="https://www.materialui.co/materialIcons/navigation/arrow_drop_down_white_192x192.png">
-        </a>
+        <a th:href="@{/sportsnewsapi}">Sports</a>
+        <a th:href="@{/musicnewsapi}">Music</a>
+        <a th:href="@{/selecttopics}">Select Topics</a>
     </div>
 </div>
 
@@ -90,11 +73,11 @@
                 <img src="https://i.imgrpost.com/imgr/2018/01/28/mostlycloudy.png" alt="mostlycloudy.png" border="0" />
             </div>
             <div class="logoName center">
-                Météo
+                Maryland
             </div>
         </div>
         <div class="todayLabel center">Today's Weather</div>
-        <div class="city">Delhi, 29-Jan Mon</div>
+        <div class="city">Maryland, 16-April Mon</div>
         <div class="sunHolder center">
             <div class="sun"></div>
         </div>
@@ -203,11 +186,6 @@
     </div>
 </div>
 <!--End Weather div-->
-
-<a href="/login">Login</a>
-<a href="/logout">Logout</a>
-<a href="/register">Register</a>
-<a href="/secure">Secure Page</a>
 
 <script src="js/form.js"></script>
 </body>
